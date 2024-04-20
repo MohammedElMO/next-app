@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-import { db } from "../../../../prisma/client";
+import db from "../../../../prisma/client";
 
-export async function POST(request: NextRequest) {
-  const content = await request.json();
-
-  return NextResponse.json({ content });
+export async function GET(request: NextRequest) {
+  const users = await db.user.findMany()
+  return NextResponse.json({ users });
 }
+
+
+
 export async function PUT(request: NextRequest) {
   const users = await db.user.create({
     data: {

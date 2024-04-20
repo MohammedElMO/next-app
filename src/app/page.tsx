@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main className="p-24">
       <ProductCard />
-      {/* Next Iam Here <Link href={"users"}>To users</Link> */}
+      <Link href={"/upload"}>Upload </Link>
     </main>
   );
 }
