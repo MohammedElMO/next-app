@@ -1,12 +1,12 @@
-import Image from "next/image";
-import Link from "next/link";
-import ProductCard from "./components/productCard";
+import { getServerSession } from "next-auth";
+import NavBar from "./components/NavBar";
+import { authOptions } from "./api/auth/[...nextauth]/authOptions";
 
-export default function Home() {
+export default async function Home() {
+  const session = await getServerSession(authOptions);
   return (
     <main className="p-24">
-      <ProductCard />
-      <Link href={"/upload"}>Upload </Link>
+      <p>{session && session.user?.email}</p>
     </main>
   );
 }

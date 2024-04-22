@@ -3,11 +3,11 @@ import db from "../../../../../prisma/client";
 
 export async function GET(
   request: NextRequest,
-  { params: { id } }: { params: { id: number } }
+  { params: { id } }: { params: { id: string } }
 ) {
   const uniqueUser = await db.user.findUnique({
     where: {
-      id: +id,
+      id
     },
   });
   return NextResponse.json(uniqueUser);
@@ -29,7 +29,7 @@ export async function DELETE(
   try {
     const user = await db.user.delete({
       where: {
-        id: +id,
+        id,
       },
     });
     return NextResponse.json(user, { status: 200 });
